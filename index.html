@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JKIAI - AI Research Institute | Light Theme</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Use Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <!-- Animate.css for animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <style>
+        /* Define Custom CSS Variables */
+        :root {
+            scroll-behavior: smooth;
+            --saffron: #FF9933;
+            --dal-blue: #2C5F8D;
+            --himalayan-grey: #64748B;
+            --snow-white: #F8F9FA;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1E293B;
+            min-height: 100vh;
+        }
+
+        /* Enhanced Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, var(--saffron) 0%, var(--dal-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            background-size: 200% 200%;
+            animation: gradientShift 6s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Enhanced Paisley Pattern */
+        .paisley-pattern {
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(255, 153, 51, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(44, 95, 141, 0.03) 0%, transparent 50%),
+                url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0c16.569 0 30 13.431 30 30 0 16.569-13.431 30-30 30C13.431 60 0 46.569 0 30 0 13.431 13.431 0 30 0zm0 58C45.464 58 58 45.464 58 30S45.464 2 30 2 2 14.536 2 30s12.536 28 28 28z' fill='%23FF9933' fill-opacity='0.02'/%3E%3C/svg%3E");
+        }
+
+        /* Enhanced scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, var(--saffron), var(--dal-blue));
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #E2E8F0;
+        }
+
+        .section {
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+        }
+        
+        /* Enhanced button gradient */
+        .btn-gradient {
+            background: linear-gradient(135deg, var(--saffron) 0%, var(--dal-blue) 100%);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background-size: 200% 200%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-gradient::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-gradient:hover::before {
+            left: 100%;
+        }
+
+        .btn-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(44, 95, 141, 0.3);
+            background-position: 100% 50%;
+        }
+
+        /* Floating animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Card hover effects */
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px) rotateX(2deg);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Glass morphism effect */
+        .glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Gradient borders */
+        .gradient-border {
+            position: relative;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(135deg, var(--saffron), var(--dal-blue)) border-box;
+            border: 2px solid transparent;
+        }
+
+        /* Pulse animation */
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 153, 51, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(255, 153, 51, 0.6); }
+        }
+
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        /* Text shadow for better readability */
+        .text-glow {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Project status badges */
+        .status-badge {
+            @apply px-3 py-1 rounded-full text-xs font-semibold;
+        }
+        .status-active {
+            background: linear-gradient(135deg, #10B981, #059669);
+            color: white;
+        }
+        .status-completed {
+            background: linear-gradient(135deg, #3B82F6, #1D4ED8);
+            color: white;
+        }
+        .status-upcoming {
+            background: linear-gradient(135deg, #F59E0B, #D97706);
+            color: white;
+        }
+    </style>
+</head>
+
+<body class="antialiased bg-gradient-to-br from-slate-50 via-white to-blue-50">
+
+    <!-- Enhanced Fixed Header -->
+    <header class="sticky top-0 z-50 backdrop-blur-xl glass border-b border-slate-200/50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                
+                <!-- Enhanced Logo -->
+                <!-- <a href="#home" class="flex items-center gap-3 group">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#FF9933] to-[#2C5F8D] flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105 pulse-glow">
+                        <span class="text-white font-bold text-xl">JK</span>
+                    </div>
+                    <div class="hidden sm:block">
+                        <div class="font-bold text-xl text-slate-900 tracking-tight text-glow">JKIAI</div>
+                        <div class="text-xs text-slate-600 font-medium">AI Research Institute</div>
+                    </div>
+                </a> -->
+                <a href="#home" class="flex items-center gap-3 group">
+    <!-- Logo Image -->
+                <div class="w-12 h-12 rounded-xl overflow-hidden shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105 pulse-glow">
+                    <img src="images/logo.jpg" alt="JKIAI Logo" class="w-full h-full object-cover">
+                </div>
+
+                <!-- Text Section -->
+                <div class="hidden sm:block">
+                    <div class="font-bold text-xl text-slate-900 tracking-tight text-glow">JKIAI</div>
+                    <div class="text-xs text-slate-600 font-medium">AI Research Institute</div>
+                </div>
+            </a>
+
+
+                <!-- Enhanced Desktop Navigation -->
+                <nav class="hidden lg:flex items-center gap-1">
+                    <a href="#home" class="nav-link px-4 py-2 rounded-xl font-medium text-sm transition-all duration-300 text-slate-700 hover:bg-slate-100/80 hover:text-slate-900 active-home">Home</a>
+                    <a href="#vision" class="nav-link px-4 py-2 rounded-xl font-medium text-sm transition-all duration-300 text-slate-700 hover:bg-slate-100/80 hover:text-slate-900 active-vision">Vision</a>
+                    <a href="#research" class="nav-link px-4 py-2 rounded-xl font-medium text-sm transition-all duration-300 text-slate-700 hover:bg-slate-100/80 hover:text-slate-900 active-research">Research</a>
+                    <a href="#projects" class="nav-link px-4 py-2 rounded-xl font-medium text-sm transition-all duration-300 text-slate-700 hover:bg-slate-100/80 hover:text-slate-900 active-projects">Projects</a>
+                    <a href="#team" class="nav-link px-4 py-2 rounded-xl font-medium text-sm transition-all duration-300 text-slate-700 hover:bg-slate-100/80 hover:text-slate-900 active-team">Team</a>
+                    <a href="#contact" class="nav-link px-4 py-2 rounded-xl font-medium text-sm transition-all duration-300 text-slate-700 hover:bg-slate-100/80 hover:text-slate-900 active-contact">Contact</a>
+                </nav>
+
+                <!-- Enhanced Mobile Menu Button -->
+                <button id="mobile-menu-button" class="lg:hidden p-3 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100/80 transition duration-300 glass">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Enhanced Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200/50 glass shadow-2xl">
+            <nav class="px-4 py-4 space-y-2">
+                <a href="#home" class="block px-4 py-3 rounded-xl font-medium transition-all duration-300 text-slate-700 hover:bg-slate-100/80 active-mobile-home">Home</a>
+                <a href="#vision" class="block px-4 py-3 rounded-xl font-medium transition-all duration-300 text-slate-700 hover:bg-slate-100/80 active-mobile-vision">Vision</a>
+                <a href="#research" class="block px-4 py-3 rounded-xl font-medium transition-all duration-300 text-slate-700 hover:bg-slate-100/80 active-mobile-research">Research</a>
+                <a href="#projects" class="block px-4 py-3 rounded-xl font-medium transition-all duration-300 text-slate-700 hover:bg-slate-100/80 active-mobile-projects">Projects</a>
+                <a href="#team" class="block px-4 py-3 rounded-xl font-medium transition-all duration-300 text-slate-700 hover:bg-slate-100/80 active-mobile-team">Team</a>
+                <a href="#contact" class="block px-4 py-3 rounded-xl font-medium transition-all duration-300 text-slate-700 hover:bg-slate-100/80 active-mobile-contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="paisley-pattern">
+        <!-- Enhanced Hero Section -->
+        <section id="home" class="section pt-32 min-h-screen flex items-center bg-transparent">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <div class="space-y-8">
+                    <!-- Enhanced Badge -->
+                    <div class="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg border border-slate-200/50 mb-8">
+                        <div class="w-2 h-2 bg-[#FF9933] rounded-full animate-pulse"></div>
+                        <span class="text-sm font-semibold text-slate-700">Pioneering AI Research in Jammu & Kashmir</span>
+                    </div>
+
+                    <h1 class="text-6xl sm:text-7xl lg:text-8xl font-black gradient-text tracking-tight text-glow">
+                        Jammu Kashmir<br>Institute for Artifcial Intelligence
+                    </h1>
+                    
+                    <p class="mt-6 max-w-3xl mx-auto text-xl text-himalayan-grey leading-relaxed">
+                        Pioneering the future of intelligence through interdisciplinary research and leveraging regional talent and heritage.
+                    </p>
+                    
+                    <div class="pt-8 flex flex-col sm:flex-row gap-4 justify-center items-center">
+                        <a href="#projects" class="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-semibold rounded-full text-white btn-gradient shadow-2xl transform hover:scale-105 transition-transform duration-300">
+                            View Our Projects
+                            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </a>
+                        <a href="#contact" class="inline-flex items-center justify-center px-8 py-4 border-2 border-[#2C5F8D] text-lg font-semibold rounded-full text-[#2C5F8D] bg-white/80 backdrop-blur-sm hover:bg-[#2C5F8D] hover:text-white transition-all duration-300 shadow-lg">
+                            Get In Touch
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enhanced Vision Section -->
+        <section id="vision" class="section glass border-y border-slate-200/50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-5xl font-extrabold text-slate-900 text-glow mb-4">Vision & Mission</h2>
+                    <p class="text-xl text-himalayan-grey max-w-3xl mx-auto text-justify leading-relaxed">The JKIAI is dedicated to achieving technological self-reliance and inclusive growth for the region. Its mission is built on two core pillars: first, AI for Kashmiri Language Preservation, which focuses on building the world's most comprehensive Kashmiri Language Corpus and developing essential tools like ASR, TTS, and Machine Translation to digitize the local language; and second, AI for a Healthier Kashmir, which creates local solutions by establishing the J&K Health Data Atlas for data-driven insights and developing AI-Augmented Diagnostics to extend specialist care, particularly to remote health centers. The JKIAI ultimately seeks to build human capital by fostering academic integration and entrepreneurship by driving innovation through purpose-driven AI research and development</p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Enhanced Vision Card -->
+                    <div class="bg-white p-8 rounded-2xl shadow-xl card-hover gradient-border">
+                        <div class="text-[#2C5F8D] text-4xl mb-4 float-animation">
+                        
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-4">The Vision</h3>
+                        <p class="text-himalayan-grey text-justify leading-relaxed">To create a world where artificial intelligence acts as an augmentation tool for human creativity and problem-solving, driving global well-being and technological equity.</p>
+                    </div>
+
+                    <!-- Enhanced Mission Card -->
+                    <div class="bg-white p-8 rounded-2xl shadow-xl card-hover gradient-border">
+                        <div class="text-[#FF9933] text-4xl mb-4 float-animation" style="animation-delay: 1s;">
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-4">Core Mission</h3>
+                        <p class="text-himalayan-grey text-justify leading-relaxed">To conduct foundational and applied research in AI, focusing on transparency, ethics, and long-term societal impact, while fostering a diverse, collaborative research ecosystem.</p>
+                    </div>
+
+                    <!-- Enhanced Values Card -->
+                    <div class="bg-white p-8 rounded-2xl shadow-xl card-hover gradient-border">
+                        <div class="text-[#64748B] text-4xl mb-4 float-animation" style="animation-delay: 2s;">
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-4">Key Values</h3>
+                        <ul class="space-y-3 text-himalayan-grey">
+                            <li class="flex items-start gap-3">
+                                <span class="text-[#FF9933] font-bold mt-1">•</span>
+                                <span><strong class="text-slate-900 text-justify leading-relaxed">Integrity:</strong> Rigorous, unbiased methodology</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-[#FF9933] font-bold mt-1">•</span>
+                                <span><strong class="text-slate-900 text-justify leading-relaxed">Collaboration:</strong> Open-source and interdisciplinary work</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-[#FF9933] font-bold mt-1">•</span>
+                                <span><strong class="text-slate-900 text-justify leading-relaxed">Impact:</strong> Focus on real-world, positive change</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enhanced Research Areas Section -->
+        <section id="research" class="section glass">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-5xl font-extrabold text-slate-900 text-glow mb-4">Core Research Pillars</h2>
+                    <p class="text-xl text-himalayan-grey max-w-3xl mx-auto">Interdisciplinary research driving the future of artificial intelligence</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Enhanced Research Cards -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg card-hover border border-slate-200 hover:border-[#2C5F8D] transition-all duration-300">
+                        <div class="text-[#2C5F8D] text-5xl mb-6">🗣️</div>
+                        <h3 class="text-2xl font-semibold text-slate-900 mb-4">AI for Kashmiri Language</h3>
+                        <p class="text-himalayan-grey text-justify leading-relaxed">To preserve and empower the rich linguistic heritage of Kashmir, JKCAI is committed to developing advanced Natural Language Processing (NLP) and speech-based technologies for Kashmiri and other local languages. By building comprehensive datasets of text and spoken language, we aim to create tools such as automatic speech recognition (ASR), text-to-speech (TTS), and machine translation (MT) systems tailored to the unique phonetics, grammar, and dialects of the region. These technologies will not only make digital content accessible to all, including those with limited literacy or visual impairments, but also foster cultural preservation, enable voice-enabled interfaces for public services, education, and healthcare, and bridge communication gaps between local languages and global digital ecosystems.</p>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-2xl shadow-lg card-hover border border-slate-200 hover:border-[#FF9933] transition-all duration-300">
+                        <div class="text-[#FF9933] text-5xl mb-6">🏥</div>
+                        <h3 class="text-2xl font-semibold text-slate-900 mb-4">AI for Healthcare</h3>
+                        <p class="text-himalayan-grey text-justify leading-relaxed">JKIAI will leverage the power of artificial intelligence to transform healthcare in Jammu & Kashmir by building AI models trained on local, region-specific data. By analyzing electronic health records, diagnostic reports, and medical imaging from the region, these models will be designed to identify unique patterns and risk factors in diseases such as cardiovascular conditions, chronic kidney disease, diabetes, and infectious illnesses. This localized approach will enable predictive analytics, early detection, and AI-augmented diagnostic tools that are tailored to the population’s specific genetics, environment, and lifestyle, ultimately improving public health outcomes and empowering healthcare providers in remote and underserved areas..</p>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-2xl shadow-lg card-hover border border-slate-200 hover:border-green-500 transition-all duration-300">
+                        <div class="text-green-500 text-5xl mb-6">🔒</div>
+                        <h3 class="text-2xl font-semibold text-slate-900 mb-4">AI for Digital Safety</h3>
+                        <p class="text-himalayan-grey text-justify leading-relaxed">JKIAI will harness the power of artificial intelligence to enhance digital privacy and combat cyberbullying in Jammu & Kashmir. By developing AI-driven tools that monitor, detect, and flag harmful online behavior, we will create safer digital spaces for both men and women. These systems will leverage natural language processing and pattern recognition to identify harassment, offensive content, and privacy breaches in real time, while respecting individual data rights. Additionally, AI will support educational interventions and personalized alerts, empowering users to protect their personal information, report abuse, and engage online responsibly, thereby fostering a more secure and inclusive digital environment.</p>
+                    </div>
+
+                    <!-- <div class="bg-white p-8 rounded-2xl shadow-lg card-hover border border-slate-200 hover:border-orange-500 transition-all duration-300">
+                        <div class="text-orange-500 text-5xl mb-6">📊</div>
+                        <h3 class="text-2xl font-semibold text-slate-900 mb-4">Data-Centric Machine Learning</h3>
+                        <p class="text-himalayan-grey leading-relaxed">Exploring advanced techniques in data synthesis, active learning, and data curation to improve model performance with less data.</p>
+                    </div> -->
+                    
+                    <div class="bg-white p-8 rounded-2xl shadow-lg card-hover border border-slate-200 hover:border-[#2C5F8D] transition-all duration-300">
+                        <div class="text-[#2C5F8D] text-5xl mb-6">🤖</div>
+                        <h3 class="text-2xl font-semibold text-slate-900 mb-4">Robotics & Embodied AI</h3>
+                        <p class="text-himalayan-grey text-justify leading-relaxed">JKIAI will explore Robotics and Embodied AI at a small scale by developing compact, low-cost robotic platforms that can learn and interact with their environment. Using modular hardware, open-source software, and simulation tools, we will experiment with perception, navigation, and task execution in controlled settings. These small-scale robots will serve as testbeds for AI algorithms, allowing researchers and students to prototype, iterate, and refine intelligent behaviors before scaling up to more complex systems. This approach will make advanced robotics research accessible, practical, and cost-effective for local innovation.</p>
+                    </div>
+
+                    <!-- Enhanced CTA Card -->
+                    <div class="bg-gradient-to-br from-white to-slate-50 p-8 rounded-2xl shadow-2xl flex flex-col justify-center items-center text-center gradient-border">
+                        <div class="text-5xl mb-6 gradient-text">🌟</div>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-4">Interested in Collaborating?</h3>
+                        <p class="text-himalayan-grey mb-6 text-justify leading-relaxed">Our research is open to partnerships with academia and industry.</p>
+                        <a href="#contact" class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-semibold rounded-full text-white btn-gradient shadow-lg">
+                            Get In Touch
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Projects Section -->
+        <section id="projects" class="section glass border-y border-slate-200/50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-5xl font-extrabold text-slate-900 text-glow mb-4">Featured Projects</h2>
+                    <p class="text-xl text-himalayan-grey max-w-3xl mx-auto">Real-world applications of our AI research making tangible impact</p>
+                </div>
+
+                <!-- Project Filters -->
+                <div class="flex flex-wrap justify-center gap-4 mb-12">
+                    <button class="filter-btn px-6 py-3 rounded-full bg-white border border-slate-300 text-slate-700 font-semibold hover:bg-slate-50 transition-all duration-300 active-filter" data-filter="all">
+                        All Projects
+                    </button>
+                    <button class="filter-btn px-6 py-3 rounded-full bg-white border border-slate-300 text-slate-700 font-semibold hover:bg-slate-50 transition-all duration-300" data-filter="active">
+                        Active
+                    </button>
+                    <button class="filter-btn px-6 py-3 rounded-full bg-white border border-slate-300 text-slate-700 font-semibold hover:bg-slate-50 transition-all duration-300" data-filter="completed">
+                        Completed
+                    </button>
+                    <button class="filter-btn px-6 py-3 rounded-full bg-white border border-slate-300 text-slate-700 font-semibold hover:bg-slate-50 transition-all duration-300" data-filter="upcoming">
+                        Upcoming
+                    </button>
+                </div>
+
+                <div class="grid lg:grid-cols-2 xl:grid-cols-3 gap-8" id="projects-grid">
+                    <!-- Project 1 - Active -->
+                    <div class="project-card bg-white rounded-2xl shadow-xl card-hover overflow-hidden gradient-border" data-status="active">
+                        <div class="h-48 bg-gradient-to-br from-[#FF9933] to-[#2C5F8D] relative">
+                            <div class="absolute top-4 right-4">
+                                <span class="status-badge status-active">Active</span>
+                            </div>
+                            <div class="absolute bottom-4 left-6 text-white">
+                                <div class="text-4xl mb-2">🗣️</div>
+                                <h3 class="text-xl font-bold">NLP for Kashmiri Language</h3>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-himalayan-grey mb-4 text-justify leading-relaxed">To preserve and empower the rich linguistic heritage of Kashmir, JKCAI is committed to developing advanced Natural Language Processing (NLP) and speech-based technologies for Kashmiri and other local languages. By building comprehensive datasets of text and spoken language, we aim to create tools such as automatic speech recognition (ASR), text-to-speech (TTS), and machine translation (MT) systems tailored to the unique phonetics, grammar, and dialects of the region. These technologies will not only make digital content accessible to all, including those with limited literacy or visual impairments, but also foster cultural preservation, enable voice-enabled interfaces for public services, education, and healthcare, and bridge communication gaps between local languages and global digital ecosystems.</p>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-8 h-8 bg-[#2C5F8D] rounded-full flex items-center justify-center text-white text-sm font-bold">SA</div>
+                                    <span class="text-sm text-slate-600">Dr. Shakeel A. Sheikh</span>
+                                </div>
+                                <!-- <span class="text-sm text-slate-500">6 months</span> -->
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex space-x-2">
+                                    <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">NLP</span>
+                                    <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">ASR</span>
+                                    <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">TTS</span>
+                                    
+                                    <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">LLM</span>
+                                </div>
+                                <a href="#" class="text-[#2C5F8D] hover:text-[#FF9933] transition-colors duration-300">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                    <!-- Project 3 - Active -->
+                    <div class="project-card bg-white rounded-2xl shadow-xl card-hover overflow-hidden gradient-border" data-status="active">
+                        <div class="h-48 bg-gradient-to-br from-[#FF9933] to-[#2C5F8D] relative">
+                            <div class="absolute top-4 right-4">
+                                <span class="status-badge status-active">Active</span>
+                            </div>
+                            <div class="absolute bottom-4 left-6 text-white">
+                                <div class="text-4xl mb-2">🏥</div>
+                                <h3 class="text-xl font-bold">AI for Healthcare</h3>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-himalayan-grey mb-4 text-justify leading-relaxed">JKIAI will leverage the power of artificial intelligence to transform healthcare in Jammu & Kashmir by building AI models trained on local, region-specific data. By analyzing electronic health records, diagnostic reports, and medical imaging from the region, these models will be designed to identify unique patterns and risk factors in diseases such as cardiovascular conditions, chronic kidney disease, diabetes, and infectious illnesses. This localized approach will enable predictive analytics, early detection, and AI-augmented diagnostic tools that are tailored to the population’s specific genetics, environment, and lifestyle, ultimately improving public health outcomes and empowering healthcare providers in remote and underserved areas.</p>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-8 h-8 bg-[#2C5F8D] rounded-full flex items-center justify-center text-white text-sm font-bold">RS</div>
+                                    <span class="text-sm text-slate-600">Research Team</span>
+                                </div>
+                                <!-- <span class="text-sm text-slate-500">8 months</span> -->
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex space-x-2">
+                                    <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-xs font-medium">Medical AI</span>
+                                    <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">Omics</span>
+                                </div>
+                                <a href="#" class="text-[#2C5F8D] hover:text-[#FF9933] transition-colors duration-300">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                   
+
+                    <!-- Project 5 - Active -->
+                    <div class="project-card bg-white rounded-2xl shadow-xl card-hover overflow-hidden gradient-border" data-status="active">
+                        <div class="h-48 bg-gradient-to-br from-[#FF9933] to-[#2C5F8D] relative">
+                            <div class="absolute top-4 right-4">
+                                <span class="status-badge status-active">Active</span>
+                            </div>
+                            <div class="absolute bottom-4 left-6 text-white">
+                                <div class="text-4xl mb-2">🌾</div>
+                                <h3 class="text-xl font-bold">AI for Agriculture and Plant Science</h3>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-himalayan-grey mb-4 text-justify leading-relaxed">JKIAI will harness AI for Agriculture and Plant Omics, leveraging machine learning to analyze genomic, transcriptomic, and metabolomic data from local crops. By integrating these multi-layered biological datasets, AI will help identify traits for higher yield, disease resistance, and climate adaptability, tailored to the unique agro-climatic conditions of Jammu & Kashmir. Small-scale sensor networks and imaging systems will monitor plant health and growth in real time, enabling data-driven decision making for farmers and researchers, while fostering sustainable and precision agriculture practices in the region.</p>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-8 h-8 bg-[#2C5F8D] rounded-full flex items-center justify-center text-white text-sm font-bold">AT</div>
+                                    <span class="text-sm text-slate-600">Agri Tech Team</span>
+                                </div>
+                                <!-- <span class="text-sm text-slate-500">4 months</span> -->
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex space-x-2">
+                                    <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">Agriculture</span>
+                                    <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-medium">AI</span>
+                                </div>
+                                <a href="#" class="text-[#2C5F8D] hover:text-[#FF9933] transition-colors duration-300">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                   
+
+                <!-- Projects CTA -->
+                <div class="text-center mt-12">
+                    <div class="bg-gradient-to-br from-white to-slate-50 p-8 rounded-2xl shadow-xl gradient-border">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-4">Have a Project in Mind?</h3>
+                        <p class="text-himalayan-grey mb-6 max-w-2xl mx-auto">We're always looking for new challenges and collaborations. Whether you're from academia, industry, or government, let's work together to push the boundaries of AI.</p>
+                        <a href="#contact" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-lg font-semibold rounded-full text-white btn-gradient shadow-lg hover:scale-105 transition-transform duration-300">
+                            Start a Collaboration
+                            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enhanced Team Section -->
+        <section id="team" class="section glass border-y border-slate-200/50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-5xl font-extrabold text-slate-900 text-glow mb-4">The JKIAI Team</h2>
+                    <p class="text-xl text-himalayan-grey max-w-3xl mx-auto">Meet the brilliant minds driving innovation in artificial intelligence</p>
+                </div>
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Enhanced Team Member Cards -->
+                    <div class="bg-white p-8 rounded-2xl text-center shadow-xl card-hover border-b-4 border-[#2C5F8D]">
+                        <div class="w-28 h-28 rounded-full mx-auto mb-6 bg-gradient-to-br from-[#FF9933] to-[#2C5F8D] flex items-center justify-center text-white text-2xl font-bold border-4 border-white shadow-lg">
+                            SAS
+                        </div>
+                        <h3 class="text-xl font-semibold text-slate-900 mb-2">Dr. Shakeel A Sheikh</h3>
+                        <p class="text-[#FF9933] text-sm font-semibold mb-4">Founder & Research Scientist, Novartis AG</p>
+                        <!-- <p class="text-himalayan-grey text-sm leading-relaxed">Expert in Large Language Models and Causal Inference with 15+ years of research experience.</p> -->
+                    </div>
+
+                    <div class="bg-white p-8 rounded-2xl text-center shadow-xl card-hover border-b-4 border-[#FF9933]">
+                        <div class="w-28 h-28 rounded-full mx-auto mb-6 bg-gradient-to-br from-[#FF9933] to-[#2C5F8D] flex items-center justify-center text-white text-2xl font-bold border-4 border-white shadow-lg">
+                            PM
+                        </div>
+                        <h3 class="text-xl font-semibold text-slate-900 mb-2">Dr. Patrick Marmaroli</h3>
+                        <p class="text-[#FF9933] text-sm font-semibold mb-4">ML Research Scientist, Miscrosoft</p>
+                        <!-- <p class="text-himalayan-grey text-sm leading-relaxed">Focuses on regulatory frameworks and AI safety standards for responsible AI deployment.</p> -->
+                    </div>
+
+                    <div class="bg-white p-8 rounded-2xl text-center shadow-xl card-hover border-b-4 border-[#2C5F8D]">
+                        <div class="w-28 h-28 rounded-full mx-auto mb-6 bg-gradient-to-br from-[#2C5F8D] to-[#FF9933] flex items-center justify-center text-white text-2xl font-bold border-4 border-white shadow-lg">
+                            DAK
+                        </div>
+                        <h3 class="text-xl font-semibold text-slate-900 mb-2">Dr. Dawood A. Khan</h3>
+                        <p class="text-[#FF9933] text-sm font-semibold mb-4">Research Engineer, UAE</p>
+                        <!-- <p class="text-himalayan-grey text-sm leading-relaxed">Specializes in computer vision and efficient deep learning architectures for edge devices.</p> -->
+                    </div>
+
+                    <div class="bg-white p-8 rounded-2xl text-center shadow-xl card-hover border-b-4 border-[#FF9933]">
+                        <div class="w-28 h-28 rounded-full mx-auto mb-6 bg-gradient-to-br from-[#FF9933] to-[#2C5F8D] flex items-center justify-center text-white text-2xl font-bold border-4 border-white shadow-lg">
+                            YK
+                        </div>
+                        <h3 class="text-xl font-semibold text-slate-900 mb-2">Dr. Yacouba Kaloga</h3>
+                        <p class="text-[#FF9933] text-sm font-semibold mb-4">Research Scientist, EPFL, Switzerland</p>
+                        <!-- <p class="text-himalayan-grey text-sm leading-relaxed">Drives projects in sustainable computing and green AI with focus on environmental impact.</p> -->
+                    </div>
+
+                    
+                    <div class="bg-white p-8 rounded-2xl text-center shadow-xl card-hover border-b-4 border-[#FF9933]">
+                        <div class="w-28 h-28 rounded-full mx-auto mb-6 bg-gradient-to-br from-[#FF9933] to-[#2C5F8D] flex items-center justify-center text-white text-2xl font-bold border-4 border-white shadow-lg">
+                            MAW
+                        </div>
+                        <h3 class="text-xl font-semibold text-slate-900 mb-2">Dr. Mudasir A. Wani</h3>
+                        <p class="text-[#FF9933] text-sm font-semibold mb-4">Assistant Professor, KSA</p>
+                        <!-- <p class="text-himalayan-grey text-sm leading-relaxed">Drives projects in sustainable computing and green AI with focus on environmental impact.</p> -->
+                    </div>
+
+                    <div class="bg-white p-8 rounded-2xl text-center shadow-xl card-hover border-b-4 border-[#FF9933]">
+                        <div class="w-28 h-28 rounded-full mx-auto mb-6 bg-gradient-to-br from-[#FF9933] to-[#2C5F8D] flex items-center justify-center text-white text-2xl font-bold border-4 border-white shadow-lg">
+                            AS
+                        </div>
+                        <h3 class="text-xl font-semibold text-slate-900 mb-2">Dr. Idrees</h3>
+                        <p class="text-[#FF9933] text-sm font-semibold mb-4">Research Scientist, NTUT, Norway</p>
+                        <!-- <p class="text-himalayan-grey text-sm leading-relaxed">Drives projects in sustainable computing and green AI with focus on environmental impact.</p> -->
+                    </div>
+
+                    <div class="bg-white p-8 rounded-2xl text-center shadow-xl card-hover border-b-4 border-[#FF9933]">
+                        <div class="w-28 h-28 rounded-full mx-auto mb-6 bg-gradient-to-br from-[#FF9933] to-[#2C5F8D] flex items-center justify-center text-white text-2xl font-bold border-4 border-white shadow-lg">
+                            MS
+                        </div>
+                        <h3 class="text-xl font-semibold text-slate-900 mb-2">Dr. Md Sahidullah</h3>
+                        <p class="text-[#FF9933] text-sm font-semibold mb-4">Research Scientist, TCG CREST, India</p>
+                        <!-- <p class="text-himalayan-grey text-sm leading-relaxed">Drives projects in sustainable computing and green AI with focus on environmental impact.</p> -->
+                    </div>
+
+                    <div class="bg-white p-8 rounded-2xl text-center shadow-xl card-hover border-b-4 border-[#FF9933]">
+                        <div class="w-28 h-28 rounded-full mx-auto mb-6 bg-gradient-to-br from-[#FF9933] to-[#2C5F8D] flex items-center justify-center text-white text-2xl font-bold border-4 border-white shadow-lg">
+                            AB
+                        </div>
+                        <h3 class="text-xl font-semibold text-slate-900 mb-2">Dr. Ajaz A. Bhat</h3>
+                        <p class="text-[#FF9933] text-sm font-semibold mb-4">Assistant Professor, UBD</p>
+                        <!-- <p class="text-himalayan-grey text-sm leading-relaxed">Drives projects in sustainable computing and green AI with focus on environmental impact.</p> -->
+                    </div>
+
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Enhanced Contact Section -->
+        <section id="contact" class="section glass">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-5xl font-extrabold text-slate-900 text-glow mb-4">Get In Touch</h2>
+                    <p class="text-xl text-himalayan-grey max-w-3xl mx-auto">Ready to collaborate? We'd love to hear from you</p>
+                </div>
+                
+                <div class="grid lg:grid-cols-2 gap-12">
+                    <!-- Enhanced Contact Form -->
+                    <div class="bg-white p-10 rounded-2xl shadow-2xl gradient-border">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-8 text-center">Send us a message</h3>
+                        <form class="space-y-6">
+                            <div>
+                                <label for="name" class="block text-sm font-semibold text-slate-700 mb-2">Name</label>
+                                <input type="text" id="name" name="name" class="w-full rounded-xl bg-white border-slate-300 text-slate-900 p-4 focus:ring-2 focus:ring-[#2C5F8D] focus:border-transparent shadow-sm transition-all duration-300" placeholder="Your Name">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-semibold text-slate-700 mb-2">Email</label>
+                                <input type="email" id="email" name="email" class="w-full rounded-xl bg-white border-slate-300 text-slate-900 p-4 focus:ring-2 focus:ring-[#2C5F8D] focus:border-transparent shadow-sm transition-all duration-300" placeholder="your.email@example.com">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-semibold text-slate-700 mb-2">Message</label>
+                                <textarea id="message" name="message" rows="5" class="w-full rounded-xl bg-white border-slate-300 text-slate-900 p-4 focus:ring-2 focus:ring-[#2C5F8D] focus:border-transparent shadow-sm transition-all duration-300" placeholder="How can we help?"></textarea>
+                            </div>
+                            <button type="submit" class="w-full py-4 px-6 border border-transparent text-lg font-semibold rounded-xl text-white btn-gradient shadow-lg hover:scale-105 transition-transform duration-300">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Enhanced Contact Details -->
+                    <div class="space-y-8">
+                        <div class="bg-white p-10 rounded-2xl shadow-2xl gradient-border">
+                            <h3 class="text-2xl font-bold text-slate-900 mb-8 text-center">Official Details</h3>
+                            <ul class="space-y-6 text-himalayan-grey">
+                               <li class="flex flex-col p-4 rounded-xl hover:bg-slate-50 transition-all duration-300 space-y-2">
+                                <div class="flex items-center space-x-4">
+                                    <span class="text-2xl text-[#FF9933]">📍</span>
+                                    <span class="text-lg">JKIAI, Basel, Switzerland</span>
+                                </div>
+                                <div class="flex items-center space-x-4">
+                                    <span class="text-2xl text-[#FF9933]">📍</span>
+                                    <span class="text-lg">JKIAI, Jammu & Kashmir, India</span>
+                                </div>
+                            </li>
+                                <li class="flex items-center space-x-4 p-4 rounded-xl hover:bg-slate-50 transition-all duration-300">
+                                    <span class="text-2xl text-[#FF9933]">📧</span>
+                                    <a href="mailto:info@jkiai.org" class="text-lg hover:text-[#2C5F8D] transition-colors duration-300">info@jkiai.org</a>
+                                </li>
+                                <li class="flex items-center space-x-4 p-4 rounded-xl hover:bg-slate-50 transition-all duration-300">
+                                    <span class="text-2xl text-[#FF9933]">📞</span>
+                                    <a href="tel:+919876543210" class="text-lg hover:text-[#2C5F8D] transition-colors duration-300">+41 77 22 40 603</a>
+                                    <span class="text-2xl text-[#FF9933]">📞</span>
+                                    <a href="tel:+919876543210" class="text-lg hover:text-[#2C5F8D] transition-colors duration-300">+91 9906 12 34 56</a>
+                                </li>
+                                <li class="flex items-center space-x-4 p-4 rounded-xl hover:bg-slate-50 transition-all duration-300">
+                                    <span class="text-2xl text-[#FF9933]">🔗</span>
+                                    <a href="#" target="_blank" class="text-lg hover:text-[#2C5F8D] transition-colors duration-300">jkiai.github.io</a>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Enhanced Map Placeholder -->
+                       <div class="bg-gradient-to-br from-slate-100 to-slate-200 rounded-2xl overflow-hidden shadow-2xl h-64 border border-slate-300 flex items-center justify-center">
+                        <iframe 
+                            class="w-full h-full rounded-2xl"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2751.548414108256!2d7.558574315589313!3d47.55959867918282!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4791bc7c1a08cbdb%3A0x5639d3b16c21a9ff!2sBasel%2C%20Switzerland!5e0!3m2!1sen!2sin!4v1700012345678!5m2!1sen!2sin" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Enhanced Footer -->
+    <footer class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-[#FF9933] to-[#2C5F8D] flex items-center justify-center shadow-lg">
+                            <span class="text-white font-bold text-xl">JK</span>
+                        </div>
+                        <div>
+                            <div class="font-bold text-2xl">JKIAI</div>
+                            <div class="text-sm text-slate-400">Advancing AI Research</div>
+                        </div>
+                    </div>
+                    <p class="text-slate-400 text-lg leading-relaxed">
+                        Pioneering artificial intelligence research in Jammu & Kashmir, 
+                        bridging technology with regional heritage and global impact.
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="font-semibold text-xl mb-6 text-[#FF9933]">Quick Links</h3>
+                    <ul class="space-y-4 text-lg">
+                        <li><a href="#home" class="text-slate-400 hover:text-white transition-all duration-300 hover:translate-x-2 block">Home</a></li>
+                        <li><a href="#vision" class="text-slate-400 hover:text-white transition-all duration-300 hover:translate-x-2 block">Vision</a></li>
+                        <li><a href="#research" class="text-slate-400 hover:text-white transition-all duration-300 hover:translate-x-2 block">Research</a></li>
+                        <li><a href="#projects" class="text-slate-400 hover:text-white transition-all duration-300 hover:translate-x-2 block">Projects</a></li>
+                        <li><a href="#team" class="text-slate-400 hover:text-white transition-all duration-300 hover:translate-x-2 block">Team</a></li>
+                        <li><a href="#contact" class="text-slate-400 hover:text-white transition-all duration-300 hover:translate-x-2 block">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-semibold text-xl mb-6 text-[#FF9933]">Connect</h3>
+                    <ul class="space-y-4 text-lg text-slate-400">
+                        <li class="flex items-center gap-3">
+                            <span class="text-[#FF9933]">📧</span>
+                            info@jkiai.org
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="text-[#FF9933]">📍</span>
+                            Jammu & Kashmir, India
+                        </li>
+                        <li class="pt-4">
+                            <a href="#contact" class="inline-flex items-center gap-3 text-white hover:text-[#FF9933] transition-all duration-300 group">
+                                Contact Us 
+                                <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-700 pt-8 text-center text-slate-400 text-lg">
+                <p>© <span id="current-year-footer"></span> Jammu and Kashmir Institute of Artificial Intelligence. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current year in footer
+            document.getElementById('current-year-footer').textContent = new Date().getFullYear();
+
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('main section');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            // Enhanced Mobile Menu Toggle
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                mobileMenu.classList.toggle('animate__fadeInDown');
+                const icon = mobileMenuButton.querySelector('svg path');
+                if (mobileMenu.classList.contains('hidden')) {
+                    icon.setAttribute('d', 'M4 6h16M4 12h16m-7 6h7');
+                } else {
+                    icon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+                }
+            });
+            
+            // Close mobile menu when a link is clicked
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    document.querySelector('#mobile-menu-button svg path').setAttribute('d', 'M4 6h16M4 12h16m-7 6h7');
+                });
+            });
+
+            // Enhanced Scroll Logic for Active Link Highlighting
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px 0px -70% 0px',
+                threshold: 0
+            };
+
+            const updateActiveLink = (id) => {
+                navLinks.forEach(link => {
+                    link.classList.remove('bg-gradient-to-r', 'from-[#FF9933]', 'to-[#2C5F8D]', 'text-white', 'shadow-lg');
+                    link.classList.add('text-slate-700', 'hover:bg-slate-100/80', 'hover:text-slate-900');
+                });
+                
+                const activeLink = document.querySelector(`.nav-link[href="#${id}"]`);
+                if (activeLink) {
+                    activeLink.classList.remove('text-slate-700', 'hover:bg-slate-100/80', 'hover:text-slate-900');
+                    activeLink.classList.add('bg-gradient-to-r', 'from-[#FF9933]', 'to-[#2C5F8D]', 'text-white', 'shadow-lg');
+                }
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        updateActiveLink(id);
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // Initial Active State
+            updateActiveLink('home');
+
+            // Add scroll animations
+            const animateOnScroll = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate__fadeInUp');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.card-hover').forEach(card => {
+                animateOnScroll.observe(card);
+            });
+
+            // Projects Filter Functionality
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('bg-gradient-to-r', 'from-[#FF9933]', 'to-[#2C5F8D]', 'text-white', 'shadow-lg');
+                        btn.classList.add('bg-white', 'border', 'border-slate-300', 'text-slate-700');
+                    });
+
+                    // Add active class to clicked button
+                    button.classList.remove('bg-white', 'border', 'border-slate-300', 'text-slate-700');
+                    button.classList.add('bg-gradient-to-r', 'from-[#FF9933]', 'to-[#2C5F8D]', 'text-white', 'shadow-lg');
+
+                    const filter = button.getAttribute('data-filter');
+
+                    projectCards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-status') === filter) {
+                            card.style.display = 'block';
+                            card.classList.add('animate__fadeIn');
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
